@@ -1,0 +1,620 @@
+MAP
+ IMAGETYPE      JPEG
+ EXTENT         -45.0060000000000002 -44.9939999999999998 -10.9939999999999998 -10.0060000000000002
+ SIZE           7500 7500
+ IMAGECOLOR     255 255 255
+
+ NAME           tyriaMapfileName
+ PROJECTION
+	"init=epsg:4326"
+ END
+
+ FONTSET 	/project/tyria/map/data/fonts/fonts.list
+
+ WEB
+ 	METADATA
+ 		"wms_enable_request"    "*"
+		"wms_srs"               "EPSG:4326"
+		"wms_title"             "tyriaMetadataTitle"
+		#"wms_online_resource"	"http://172.31.41.224/?map=/map/tyria/map/data/couches/rasters/GW2_complete_7500_7500.jpg"
+		#"wms_online_resource"	"http://192.168.0.15/?map=/map/tyria/map/data/couches/rasters/GW2_complete_7500_7500.jpg"
+		#"wms_online_resource"	"http://192.168.0.21/?map=/map/tyria/map/data/couches/rasters/GW2_complete_7500_7500.jpg"
+		"wms_online_resource"	"http://mapserver.esipe.geonef.fr/?map=/project/tyria/map/GW2_complete_7500_7500.map"
+		#"wms_online_resource"     "http://mapserver.esipe.geonef.fr/NOM_PROJET/toto?"
+		#"wms_feature_info_mime_type" "text/html"
+		"labelcache_map_edge_buffer" "100"
+	END
+ END
+
+ 
+ ### LAYERS ###
+
+
+ #Fond de carte
+ LAYER
+        NAME	"tyriaRasterLayerName"
+        TYPE    RASTER
+        STATUS  ON
+	DATA	"data/couches/rasters/GW2_complete_7500_7500.jpg"
+ END
+
+ #Fond de carte tuile
+ LAYER
+	NAME "metrica"
+	TYPE RASTER
+	STATUS ON
+	DATA "data/couches/rasters/Metrica_Province_2597_3960.jpg"
+	#TILEINDEX "data/couches/rasters/Metrica_Province_2597_3960.jpg"
+	#TILEITEM "location"
+	MAXSCALEDENOM 8000000
+ END
+
+ LAYER
+	NAME "rata_sum"
+	TYPE RASTER
+	STATUS ON
+	DATA "data/couches/rasters/RataSum_2739_2674.jpg"
+	#TILEINDEX "data/couches/rasters/RataSum_2739_2674.jpg"
+	#TILEITEM "location"
+	MAXSCALEDENOM 8000000
+ END
+ 
+ LAYER
+	NAME "caledon_forest"
+	TYPE RASTER
+	STATUS ON
+	DATA "data/couches/rasters/Caledon_Forest_2246_4706.jpg"
+	#TILEINDEX "data/couches/rasters/Caledon_Forest_2246_4706.jpg"
+	#TILEITEM "location"
+	MAXSCALEDENOM 8000000
+ END
+
+ # REGIONS
+ LAYER
+	NAME	"regions"
+	TYPE	POLYGON
+	STATUS	ON
+	DATA 	"data/couches/regions.shp"
+	OPACITY	30
+	MINSCALEDENOM 4000000
+	METADATA
+		"wms_title"
+		"regions"
+	END
+
+	# éviter de répéter les labelles sur une même couche
+	PROCESSING "LABEL_NO_CLIP=True"
+	
+	CLASSITEM "SECTEUR"
+	
+	#ASURA
+	CLASS
+		NAME "asura"
+		#EXPRESSION ('[SECTEUR]' eq 'ASURA')
+		EXPRESSION 'ASURA'
+
+		STYLE
+			COLOR 10 5 200 #bleu
+		END
+		#STYLE
+		#	OUTLINECOLOR 255 255 255 #blanc
+		#	WIDTH 3
+		#END
+		
+		TEXT '[NOM]'
+		LABEL
+			#va avec le bloc au dessus : PROCESSING "LABEL_NO_CLIP=True"
+			PARTIALS TRUE
+			
+			# Il faut rajouter / activer les polices sur linux, manip a faire dans
+			# /usr/share/fonts/truetype/ttf-dejavu avec nano editer fonts.list
+			# en rapport avec FONTSET en haut du mapfile
+			FONT     'gw2'
+			
+			COLOR    255 252 20 #jaune
+			TYPE     truetype
+			SIZE     8
+			POSITION AUTO
+			SHADOWSIZE 2 2
+			SHADOWCOLOR 50 50 50 #gris
+			#REPEATDISTANCE 10000
+			MAXSCALEDENOM 40000000
+			MINSCALEDENOM 4000000
+		END
+	END
+
+	#SYLVARI
+	CLASS
+		NAME "sylvari"
+		EXPRESSION 'SYLVARI'
+
+		STYLE
+			COLOR 0 255 0 #vert
+		END
+		#STYLE
+		#	OUTLINECOLOR 255 255 255 #blanc
+		#	WIDTH 3
+		#END
+		
+		TEXT '[NOM]'
+		LABEL
+			COLOR    255 252 20 #jaune
+			FONT     'gw2'
+			TYPE     truetype
+			SIZE     8
+			POSITION AUTO
+			PARTIALS FALSE
+			SHADOWSIZE 2 2
+			SHADOWCOLOR 50 50 50 #gris
+			REPEATDISTANCE 10000
+			MAXSCALEDENOM 40000000
+			MINSCALEDENOM 4000000
+		END
+	END
+
+	#HUMAIN
+	CLASS
+		NAME "humain"
+		EXPRESSION 'HUMAIN'
+
+		STYLE
+			COLOR 190 55 20 #rouge
+		END
+		#STYLE
+		#	OUTLINECOLOR 255 255 255 #blanc
+		#	WIDTH 3
+		#END
+		
+		TEXT '[NOM]'
+		LABEL
+			COLOR    255 252 20 #jaune
+			FONT     'gw2'
+			TYPE     truetype
+			SIZE     8
+			POSITION AUTO
+			PARTIALS FALSE
+			SHADOWSIZE 2 2
+			SHADOWCOLOR 50 50 50 #gris
+			REPEATDISTANCE 10000
+			MAXSCALEDENOM 40000000
+			MINSCALEDENOM 4000000
+		END
+	END
+ END
+
+ LAYER
+	NAME	"limites_regions"
+	TYPE	POLYGON
+	STATUS	ON
+	DATA 	"data/couches/regions.shp"
+	OPACITY	90
+	MINSCALEDENOM 4000000
+	METADATA
+		"wms_title"
+		"regions"
+	END
+	CLASS
+		NAME "limites_regions_className"
+		STYLE
+			OUTLINECOLOR 255 255 255 #blanc
+			WIDTH 2
+		END
+	END
+ END
+
+ # HYDRO
+ LAYER
+	NAME "hydro"
+	TYPE POLYGON
+	STATUS ON
+	DATA "data/couches/hydro.shp"
+	OPACITY 35
+	METADATA
+		"wms_title"
+		"hydro"
+	END
+	MAXSCALEDENOM 7000000
+
+	CLASSITEM "CODE_TYPE"
+
+	CLASS
+		NAME "lake"
+		EXPRESSION '1'
+		STYLE
+			COLOR 55 150 196 #bleu
+		END
+		STYLE
+			OUTLINECOLOR 0 0 0 #noir
+			WIDTH 1
+		END
+	END
+
+	CLASS
+		NAME "shallow"
+		EXPRESSION '2'
+		STYLE
+			COLOR 196 232 196 #bleu
+		END
+		STYLE
+			OUTLINECOLOR 0 0 0 #noir
+			WIDTH 1
+		END
+	END
+
+	CLASS
+		NAME "sea"
+		EXPRESSION '3'
+		STYLE
+			COLOR 33 58 98 #bleu
+		END
+		STYLE
+			OUTLINECOLOR 0 0 0 #noir
+			WIDTH 1
+		END
+	END
+
+	CLASS
+		NAME "pond"
+		EXPRESSION '4'
+		STYLE
+			COLOR 128 184 165 #bleu
+		END
+		STYLE
+			OUTLINECOLOR 0 0 0 #noir
+			WIDTH 1
+		END
+	END
+
+	CLASS
+		NAME "river"
+		EXPRESSION '5'
+		STYLE
+			COLOR 146 233 220 #bleu
+		END
+		STYLE
+			OUTLINECOLOR 0 0 0 #noir
+			WIDTH 1
+		END
+	END
+
+	CLASS
+		NAME "swampland"
+		EXPRESSION '6'
+		STYLE
+			COLOR 111 182 117 #bleu
+		END
+		STYLE
+			OUTLINECOLOR 0 0 0 #noir
+			WIDTH 1
+		END
+	END
+ END
+
+ # TERRITOIRES
+ LAYER
+	NAME "territories"
+	TYPE POLYGON
+	STATUS ON
+	DATA "data/couches/territoires.shp"
+	OPACITY 35
+	METADATA
+		"wms_tite"
+		"territories"
+	END
+	PROCESSING "LABEL_NO_CLIP=True"
+	MAXSCALEDENOM 5000000
+
+	CLASSITEM "CODE_PEUPL"
+	
+	CLASS
+		NAME "Hylek"
+		EXPRESSION '4'
+		STYLE
+			COLOR 215 25 28 #rouge
+		END
+		STYLE
+			OUTLINECOLOR 0 0 0 #noir
+			WIDTH 1
+		END
+		TEXT '[NOM_PEUPLE]'
+		LABEL
+			COLOR    215 25 28 #rouge
+			FONT     'gras'
+			TYPE     truetype
+			SIZE     8
+			POSITION AUTO
+			PARTIALS TRUE
+			SHADOWSIZE 2 2
+			SHADOWCOLOR 50 50 50 #gris
+			REPEATDISTANCE 10000
+			MAXSCALEDENOM 5000000
+			MINSCALEDENOM 500000
+		END
+	END
+
+	CLASS
+		NAME "Skritt"
+		EXPRESSION '5'
+		STYLE
+			COLOR 253 201 128 #marron
+		END
+		STYLE
+			OUTLINECOLOR 0 0 0 #noir
+			WIDTH 1
+		END
+		TEXT '[NOM_PEUPLE]'
+		LABEL
+			COLOR    253 201 128 #marron
+			FONT     'gras'
+			TYPE     truetype
+			SIZE     8
+			POSITION AUTO
+			PARTIALS TRUE
+			SHADOWSIZE 2 2
+			SHADOWCOLOR 50 50 50 #gris
+			REPEATDISTANCE 10000
+			MAXSCALEDENOM 5000000
+			MINSCALEDENOM 500000
+		END
+	END
+
+	CLASS
+		NAME "Enquestre"
+		EXPRESSION '8'
+		STYLE
+			COLOR 199 232 173 #vert pale
+		END
+		STYLE
+			OUTLINECOLOR 0 0 0 #noir
+			WIDTH 1
+		END
+		TEXT '[NOM_PEUPLE]'
+		LABEL
+			COLOR    199 232 173 #vert pale
+			FONT     'gras'
+			TYPE     truetype
+			SIZE     8
+			POSITION AUTO
+			PARTIALS TRUE
+			SHADOWSIZE 2 2
+			SHADOWCOLOR 50 50 50 #gris
+			REPEATDISTANCE 10000
+			MAXSCALEDENOM 5000000
+			MINSCALEDENOM 500000
+		END
+	END
+ END
+
+ # ROUTES
+ LAYER
+	NAME "roads"
+	TYPE LINE
+	STATUS ON
+	DATA "data/couches/routes.shp"
+	OPACITY 100
+	METADATA
+		"wms_title"
+		"roads"
+	END
+	MAXSCALEDENOM 6000000
+
+	CLASS
+		NAME "road"
+		STYLE
+			COLOR 209 209 157 #jaune sable
+		END
+	END
+	
+ END
+
+ # POINTS REMARQUABLES
+ LAYER
+	NAME "remarkable_points"
+	TYPE POINT
+	STATUS ON
+	DATA "data/couches/points_remarquables.shp"
+	OPACITY 100
+	METADATA
+		"wms_title"
+		"points_remarquables"
+	END
+
+	MAXSCALEDENOM 5000000
+
+	CLUSTER
+		MAXDISTANCE 90
+		REGION "ellipse"
+		GROUP ('[CODE_TYPE]' eq '6')
+	END
+
+	CLASSITEM "CODE_TYPE"
+
+	#point of interest
+	CLASS
+		NAME "pointofinterest"
+		EXPRESSION '1'
+		STYLE
+			SYMBOL 'data/images/remarkable_points/poi.png'
+			SIZE 17
+		END
+	END
+
+	#Vista
+	CLASS
+		NAME "vista"
+		EXPRESSION '2'
+		STYLE
+			SYMBOL 'data/images/remarkable_points/vista.png'
+			SIZE 17
+		END
+	END
+
+	#waypoint
+	CLASS
+		NAME "waypoint"
+		EXPRESSION '3'
+		STYLE
+			SYMBOL 'data/images/remarkable_points/wp.png'
+		END
+	END
+
+	#skill point
+	CLASS
+		NAME "skillpoint"
+		EXPRESSION '4'
+		STYLE
+			SYMBOL 'data/images/remarkable_points/sp.png'
+			SIZE 17
+		END
+	END
+
+	#jumping puzzle starts
+	CLASS
+		NAME "jpstart"
+		EXPRESSION '5'
+		STYLE
+			SYMBOL 'data/images/remarkable_points/jp.png'
+			SIZE 18
+		END
+	END
+
+	#gateway
+	CLASS
+		NAME "gateway"
+		EXPRESSION '6'
+		STYLE
+			SYMBOL 'data/images/remarkable_points/gw.png'
+			SIZE 18
+		END
+	END
+ END
+
+ # PNJ
+ LAYER
+	NAME "npc"
+	TYPE POINT
+	STATUS ON
+	DATA "data/couches/pnj.shp"
+	OPACITY 90
+	METADATA
+		"wms_title"
+		"pnj"
+	END
+	MAXSCALEDENOM 3000000
+
+	CLUSTER
+		MAXDISTANCE 80
+		REGION "ellipse"
+		GROUP ('[CODE_TYPE]' eq '2')
+	END
+
+	CLASSITEM "CODE_TYPE"
+
+	CLASS
+		NAME "quest"
+		EXPRESSION '1'
+		MAXSCALEDENOM 5000000
+		STYLE
+			SYMBOL 'data/images/quest.png'
+			SIZE 14
+		END
+	END
+
+	CLASS
+		NAME "merchant"
+		EXPRESSION '2'
+		STYLE
+			SYMBOL 'data/images/merchant_20.png'
+			SIZE 14
+		END
+	END
+
+	CLASS
+		NAME "artificer"
+		EXPRESSION '4'
+		STYLE
+			SYMBOL 'data/images/craftsman/Artificer_tango_icon_20px.png'
+			SIZE 14
+		END
+	END
+
+	CLASS
+		NAME "jeweler"
+		EXPRESSION '5'
+		STYLE
+			SYMBOL 'data/images/craftsman/Jeweler_tango_icon_20px.png'
+			SIZE 14
+		END
+	END
+
+	CLASS
+		NAME "huntsman"
+		EXPRESSION '6'
+		STYLE
+			SYMBOL 'data/images/craftsman/Huntsman_tango_icon_20px.png'
+			SIZE 14
+		END
+	END
+
+	CLASS
+		NAME "armorsmith"
+		EXPRESSION '7'
+		STYLE
+			SYMBOL 'data/images/craftsman/Armorsmith_tango_icon_20px.png'
+			SIZE 14
+		END
+	END
+
+	CLASS
+		NAME "weaponsmith"
+		EXPRESSION '8'
+		STYLE
+			SYMBOL 'data/images/craftsman/Weaponsmith_tango_icon_20px.png'
+			SIZE 14
+		END
+	END
+
+	CLASS
+		NAME "chef"
+		EXPRESSION '9'
+		STYLE
+			SYMBOL 'data/images/craftsman/Chef_tango_icon_20px.png'
+			SIZE 14
+		END
+	END
+
+	CLASS
+		NAME "leatherworker"
+		EXPRESSION '10'
+		STYLE
+			SYMBOL 'data/images/craftsman/Leatherworker_tango_icon_20px.png'
+			SIZE 14
+		END
+	END
+
+	CLASS
+		NAME "tailor"
+		EXPRESSION '11'
+		STYLE
+			SYMBOL 'data/images/craftsman/Tailor_tango_icon_20px.png'
+			SIZE 14
+		END
+	END
+
+	CLASS
+		NAME "guardian"
+		EXPRESSION '12'
+		STYLE
+			SYMBOL 'data/images/classes_icons/Guardian_tango_icon_20px.png'
+			SIZE 14
+		END
+	END
+ END
+END
+
+### SYMBOLS ###
+# SYMBOL
+#	NAME "poi"
+#	TYPE PIXMAP
+#	IMAGE "data/images/remarkable_points/poi.png"
+# END

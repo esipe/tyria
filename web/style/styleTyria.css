@@ -1,0 +1,209 @@
+body {
+/*background-color: #1B4784;*/
+background-image: url(../images/body_bg.jpg);
+background-repeat: no-repeat;
+margin: 0px;
+}
+
+#body-en {
+background-image: url(../images/body_bg-en.jpg);
+background-repeat: no-repeat;
+margin: 0px;
+}
+
+#contactbutton {
+width: 100px;
+height: 28px;
+position: fixed;
+top: 272px;
+left: 1096px;
+float: both;
+}
+
+#donation {
+width: 100px;
+height: 140px;
+position: fixed;
+top: 62px;
+left: 1096px;
+float: both;
+/*background-image: url(../images/donation_button.jpg);*/
+}
+
+#english {
+height: 56px;
+width: 32px;
+position: fixed;
+top: 0px;
+left: 1152px;float: both;
+}
+
+#footer {
+width: 1028px;
+height: 200px;
+/*margin-left: 5%;*/
+margin-left: 64px;
+margin-bottom: 2px;
+margin-top: 5px;
+background-image: url(../images/footer.jpg);
+clear: left;
+}
+
+#french {
+height: 56px;
+width: 32px;
+position: fixed;
+top: 0px;
+left: 1108px;
+float: both;
+}
+
+/*obsolete
+#footer h3 {
+margin-top: 2px;
+}*/
+
+#header {
+/*margin-left: 5%;*/
+margin-left: 64px;
+margin-bottom: 5px;
+margin-top: 2px;
+height: 200px;
+width: 1028px;
+/*float: left;*/
+background-image: url(../images/banniere2.jpg);
+}
+
+/*obsolete
+#header h2 {
+text-align: right;
+text-decoration:underline;
+padding-right: 10px;
+}*/
+
+#index {
+float: left;
+width: 1028px;
+height: 500px;
+background-image: url(../images/index_bg5.png);
+background-repeat: no-repeat;
+}
+
+#indexbutton {
+width: 100px;
+height: 28px;
+position: fixed;
+top: 208px;
+left: 1096px;
+float: both;
+}
+
+.indexLogo {
+width: 263px;
+height: 470px;
+float: right;
+}
+
+.indexText {
+width: 600px;
+padding: 110 50 50 88;
+text-align:justify;
+}
+
+.indexTitle {
+width: 500px;
+height: 33px;
+padding: 28 0 0 178;
+float: left;
+}
+
+.indexTitle h1 {
+font-size = 14px;
+margin: 0;
+padding: 0;
+}
+
+#layerswitcher {
+float: left;
+width: 220px;
+height: 500px;
+padding-left: 8px;
+background-image: url(../images/layerswitcher_background.jpg);
+background-repeat: no-repeat;
+}
+
+#layerswitcher h4 {
+margin: 2px 0 5px 0;
+text-decoration: underline;
+}
+
+#map {
+float: left;
+width: 800px;
+height: 500px;
+}
+
+#mapbutton {
+width: 100px;
+height: 28px;
+position: fixed;
+top: 240px;
+left: 1096px;
+float: both;
+}
+
+/*pour prendre en compte le margin-top du footer vis a vis de la map*/
+#margin-footer {
+margin-left: 63px;
+/*width: 100%;*/
+width: 1029px;
+height: 1px;
+clear: both;
+background-color: #000000
+}
+
+/*pour prendre en compte le margin-top du header vis a vis de la map*/
+#margin-header {
+margin-left: 63px;
+/*width: 100%;*/
+width: 1029px;
+height: 1px;
+clear: both;
+background-color: #000000
+}
+
+/*obsolete
+#margin-layerswitcher {
+width: 10px;
+height: 390px;
+}*/
+
+/*pour positionner la map sur la droite*/
+#margin-map {
+float:left;
+/*width: 5%;*/
+width: 64px;
+height: 500px;
+background-image: url(../images/margin_map_border.png);
+}
+
+/*obsolete
+#overviewmap {
+width: 228px;
+height: 120px;
+float: left;
+}*/
+
+#toolsbutton {
+width: 100px;
+height: 28px;
+position: fixed;
+top: 304px;
+left: 1096px;
+float: both;
+}
+
+#wop {
+margin: 10% 20% 20% 20%;
+text-align: center;
+}

@@ -1,0 +1,60 @@
+MAP
+
+  IMAGETYPE      PNG
+  EXTENT         0 0 20 20
+  SIZE           800 800
+  IMAGECOLOR     255 255 255
+
+  NAME           tp1
+  PROJECTION
+    "init=epsg:4326"
+  END
+
+  WEB
+    METADATA
+      "wms_enable_request"      "*"
+      "wms_srs"                 "EPSG:4326"
+      "wms_title"               "tp1"
+      "wms_online_resource"     "http://esipe.geonef.fr/test-project/tp1?"
+    END
+  END
+
+  LAYER
+    NAME         mygeom
+    TYPE         POLYGON
+    STATUS     ON
+    EXTENT         0 0 20 20
+    METADATA
+      "wms_title"               "mygeom"
+    END
+
+    # Le triangle
+    FEATURE
+      POINTS
+        5 12
+        15 12
+        10 16
+        5 12
+      END
+    END
+
+    # Le rectangle
+
+    FEATURE
+      POINTS
+        5 5
+        5 10
+        15 10
+        15 5
+        5 5
+      END
+    END
+
+    CLASS
+      STYLE
+        COLOR        255 255 0
+        OUTLINECOLOR 0 0 255
+      END
+    END
+  END
+END
