@@ -1,7 +1,9 @@
 
 **Découvrir en live : http://esipe.geonef.fr/tyria/**
 
-Tyrie Earth est un projet de serveur cartographique que je mene dans le cadre de mes etudes en informatique et geomatique (IG). Il a pour but de fournir des cartes dynamiques et enrichies de la Tyrie, l'univers de Guild Wars 2, afin de faire decouvrir aux neophytes ses regions et d'offrir aux explorateurs chevronnes un outil precis et complet pour apprivoiser ses vastes territoires.
+Tyrie Earth est un projet de serveur cartographique que je mene dans le cadre de mes etudes en informatique et geomatique (IG).
+
+Il a pour but de fournir des cartes dynamiques et enrichies de la Tyrie, l'univers de Guild Wars 2, afin de faire decouvrir aux neophytes ses regions et d'offrir aux explorateurs chevronnes un outil precis et complet pour apprivoiser ses vastes territoires.
 
 
 Visualiser en WMS sous QGIS
